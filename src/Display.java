@@ -8,6 +8,8 @@ import javafx.scene.paint.Color;
  */
 public class Display {
 
+    private int pixelScale = 48;
+
     /**
      * Instance variable to call on the canvas of javafx to draw objects
      */
@@ -39,8 +41,15 @@ public class Display {
         gC.fillRect(0, 0, Main.WIDTH, Main.HEIGHT);
     }
 
-    public void drawIntroFrame(){
+    public void drawGameFrame(){
+        for(int x = 0; x <= Main.arenaWidth; x++){
+            for(int y = 0; y <= Main.arenaHeight; y++){
 
+            }
+        }
+    }
+
+    public void drawIntroFrame(){
 
     }
 
