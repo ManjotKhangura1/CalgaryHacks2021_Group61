@@ -1,19 +1,44 @@
+import java.util.ArrayList;
+
 public class Board {
-    private Tile[][] tileBoard;
-    private final int width = 0;
-    private final int height = 0;
+    private ArrayList<Tile> tileBoard = new ArrayList<>();
+    private final int width = 28;
+    private final int height = 20;
 
-    Board(){
-
+    Board() {
+        for (int i = 0; i < width * height; i++) {
+            tileBoard.set(i, new Tile(null, 0, null));
+        }
     }
 
-    public void setTile(int x, int y, TileID tileID, int snowLevel, Object occupant){
-        Tile tile = tileBoard[x][y];
-        tile.
+    public void display(Display d) {
+        for (int i = 0; i < width; i++) {
+            for (int j = 0; j < height; j++) {
+                d.displayTile(getTile(i,j), i, j);
+            }
+        }
     }
 
-    public Tile getTile(int x, int y){
-        return tileBoard[x][y];
+    public void setup() {
+        for (int i = 0; i < width; i++) {
+            for (int j = 0; j < height; j++) {
+                if (j < 2) {
+                    getTile(i,j).setValues(TileID.Road, 0, null);
+                } else if (i < 2 || i > width - 3) {
+                    getTile(i, j).setValues(TileID.Environment, 0, null);
+                } else if (j > width - 3) {
+                    getTile(i,j).setValues(TileID.House, 0, null);
+                } else if (i > 10) {
+                    getTile(i,j).setValues(TileID.Driveway, 0, null);
+                } else {
+                    getTile(i,j).setValues(TileID.Driveway, 0, null);
+                }
+            }
+        }
+    }
+
+    public Tile getTile(int x, int y) {
+        return tileBoard.get(30 * y + x);
     }
 
 }
