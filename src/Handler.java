@@ -43,7 +43,9 @@ public class Handler {
     }
 
     public void render(Display d) {
+        d.setupNextFrame();
         d.displayRectangle(10,10, 50, 50, Color.RED);
+
     }
 
 
