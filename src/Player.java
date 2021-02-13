@@ -7,16 +7,16 @@ public class Player{
     private int walkSpeed;
     private int throwDistance;
     private int maxSnowCap = 1;
-    private int playerOrientation;
+    private Direction playerOrientation;
     private int playerX;
     private int playerY;
-    private Handler charHandler;
+    private Handler playerHandler;
 
-    Player(int X, int Y, int orientation, Handler handler){
+    Player(int X, int Y, Direction orientation, Handler handler){
         this.playerX = X;
         this.playerY = Y;
         this.playerOrientation = orientation;
-        this.charHandler = handler;
+        this.playerHandler = handler;
     }
 
     public void playerMove(int xOffset, int yOffset){
@@ -41,11 +41,11 @@ public class Player{
 
     public int getMaxSnowCap() {return maxSnowCap;}
 
-    public int getPlayerOrientation() {return playerOrientation;}
+    public Direction getPlayerOrientation() {return playerOrientation;}
 
     public int getPlayerX() {return playerX;}
 
     public int getPlayerY() {return playerY;}
 
-    public Handler getCharHandler() {return charHandler;}
+    public Handler getPlayerHandler() {return playerHandler;}
 }
