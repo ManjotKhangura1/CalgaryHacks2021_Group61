@@ -16,13 +16,9 @@ public class Tile {
         this.tileID = tileID;
     }
 
-
-
     public void setSnowLevel(int snowLevel) {
         this.snowLevel = snowLevel;
     }
-
-
 
     public void setOccupant(Object occupant) {
         this.occupant = occupant;
