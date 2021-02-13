@@ -44,6 +44,8 @@ public class Handler {
 
     public void render(Display d) {
         d.displayRectangle(10,10, 50, 50, Color.RED);
+        d.setupNextFrame();
+        d.drawGameFrame();
     }
 
 

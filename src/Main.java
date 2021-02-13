@@ -8,6 +8,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  * The Game object. It instantiates many of the key classes.
@@ -18,22 +19,22 @@ public class Main extends Application {
     /**
      * The width of the window
      */
-    public static final int WIDTH = 960;
+    public static final int WIDTH = 1280;
 
     /**
      * The height of the window
      */
-    public static final int HEIGHT = WIDTH / 12 * 9; // 720;
+    public static final int HEIGHT = 960;
 
     /**
      * The width of the arena
      */
-    public static int arenaWidth = 30;
+    public static int arenaWidth = 20;
 
     /**
      * The height of the arena
      */
-    public static int arenaHeight = 30;
+    public static int arenaHeight = 20;
 
     /**
      * The canvas that fills the window
@@ -65,6 +66,8 @@ public class Main extends Application {
         aC.start();
         mainStage.show();
         mainStage.centerOnScreen();
+        mainStage.setResizable(false);
+
     }
 
     /**
@@ -90,7 +93,7 @@ public class Main extends Application {
 
 
         mainStage.setWidth(Main.WIDTH);
-        mainStage.setHeight(Main.HEIGHT);
+        mainStage.setHeight(Main.HEIGHT+39);
 
         mainStage.setTitle("Game");
         mainStage.setScene(gameScene);
