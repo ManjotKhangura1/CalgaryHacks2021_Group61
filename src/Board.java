@@ -9,6 +9,7 @@ public class Board {
 
     public void setTile(int x, int y, TileID tileID, int snowLevel, Object occupant){
         Tile tile = tileBoard[x][y];
+        tile.
     }
 
     public Tile getTile(int x, int y){

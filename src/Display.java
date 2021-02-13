@@ -33,4 +33,9 @@ public class Display {
         gC.fillRect(0, 0, Main.WIDTH, Main.HEIGHT);
     }
 
+    public void drawIntroFrame(){
+
+
+    }
+
 }
