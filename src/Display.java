@@ -23,6 +23,12 @@ public class Display {
         this.gC = gC;
     }
 
+    public void displayTile(Tile t, int x, int y) {
+        // Takes the tile, and the x,y coordinates
+        // Determines the actual screen position to draw the tile, and draws it
+        // TODO implement
+    }
+
     // Example
     public void displayRectangle(int x, int y, int width, int height, Color color) {
         gC.setFill(color);
