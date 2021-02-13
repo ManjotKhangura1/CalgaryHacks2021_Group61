@@ -17,14 +17,7 @@ public class Handler {
 
     public Stage mainStage;
 
-    /**
-     * A list of every game object
-     */
     public LinkedList<GameObject> object = new LinkedList<GameObject>();
-
-    /**
-     * The player
-     */
     public Player player = null;
 
     public void setMainStage(Stage mainStage) {
