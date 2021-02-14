@@ -23,6 +23,7 @@ public class Player extends GameObject{
     private int iStepX = 0;
     private int iStepY = 0;
     private int animCounter = 0;
+    private String playerSprite;
     private Handler playerHandler;
 
     Player(int X, int Y, Direction orientation, Handler handler){
