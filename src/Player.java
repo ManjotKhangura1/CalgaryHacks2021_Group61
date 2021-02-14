@@ -18,6 +18,8 @@ public class Player extends GameObject{
     private Direction playerOrientation;
     private int playerX;
     private int playerY;
+    private int xOffset = 0;
+    private int yOffset = 0;
     private int iStepX = 0;
     private int iStepY = 0;
     private Handler playerHandler;
@@ -91,12 +93,16 @@ public class Player extends GameObject{
             return;
         }
         if (Handler.kl.isPressed(KeyCode.W)) {
+            setRotation(Direction.Up);
             playerMove(Direction.Up);
         } else if (Handler.kl.isPressed(KeyCode.A)) {
+            setRotation(Direction.Left);
             playerMove(Direction.Left);
         } else if (Handler.kl.isPressed(KeyCode.S)) {
+            setRotation(Direction.Down);
             playerMove(Direction.Down);
         } else if (Handler.kl.isPressed(KeyCode.D)) {
+            setRotation(Direction.Right);
             playerMove(Direction.Right);
         }
 
