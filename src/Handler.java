@@ -45,11 +45,21 @@ public class Handler {
     public void render(Display d) {
         display = d;
         if (!hasRendered || kl.justPressed(KeyCode.SPACE)) {
-            d.drawGameFrame();
+            d.setupNextFrame();
             hasRendered = true;
+        }
+        d.setupNextFrame();
+        for (int i = 0; i < object.size(); i++) {
+            GameObject tempObject = object.get(i);
+            tempObject.display(d); // display all
+
+            if(tempObject.isDead())
+                object.removeFirstOccurrence(tempObject);
         }
         player.display(d);
     }
 
-
+    public void addFootprint(Footprint footprint){
+        object.add(footprint);
+    }
 }

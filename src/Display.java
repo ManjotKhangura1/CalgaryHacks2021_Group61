@@ -1,8 +1,11 @@
 
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.effect.BoxBlur;
 import javafx.scene.paint.Color;
 
 import javafx.scene.image.Image;
+
+import javax.swing.*;
 
 /**
  * This class displays everything on screen (the GUI). It is called in a lot of the other classes whenever anything
@@ -49,12 +52,21 @@ public class Display {
         //gC.fillRect(x*pixelScale, y*pixelScale, pixelScale, pixelScale);
     }
 
-
-    public void redTile(int x, int y, int offX, int offY) {
-        displayRectangle(x*pixelScale + offX, y*pixelScale + offY, pixelScale, pixelScale, Color.RED);
+    public void footprint(int x, int y, double opacity) {
+        gC.setGlobalAlpha(opacity);
+        gC.setEffect(new BoxBlur(10, 10, 3));
+        gC.setFill(Color.color(Math.abs((double)x/Main.WIDTH), Math.abs((double)y/Main.HEIGHT), Math.abs(opacity)));
+        gC.fillOval(x+16, y+90, 40, 40);
+        gC.setEffect(null);
+        gC.setGlobalAlpha(1.0);
     }
 
-    // Example
+    public void playerTile(int x, int y, String sprite) {
+        Image image = new Image(sprite);
+        gC.drawImage(image, x, y);
+    }
+
+    // Examples
     public void displayRectangle(int x, int y, int width, int height, Color color) {
         gC.setFill(color);
         gC.fillRect(x, y, width, height);
@@ -64,10 +76,6 @@ public class Display {
     public void setupNextFrame() {
         gC.setFill(Color.BLACK);
         gC.fillRect(0, 0, Main.WIDTH, Main.HEIGHT);
-    }
-
-    public void drawGameFrame(){
-        Main.board.display(this);
     }
 
     public void drawIntroFrame(){

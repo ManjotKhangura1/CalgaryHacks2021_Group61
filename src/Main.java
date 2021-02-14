@@ -5,16 +5,19 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+
+import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionListener;
+import java.awt.color.*;
 
 /**
  * The Game object. It instantiates many of the key classes.
  */
 
-public class Main extends Application {
+public class Main extends Application implements MouseMotionListener {
 
     /**
      * The width of the window
@@ -49,8 +52,6 @@ public class Main extends Application {
      */
     private Scene gameScene;
 
-    public static Board board;
-
     public void setupKeylist(Scene gameScene) {
         kL = new Keylist();
         gameScene.addEventHandler(KeyEvent.KEY_PRESSED, kL);
@@ -78,8 +79,6 @@ public class Main extends Application {
         mainStage.centerOnScreen();
         mainStage.setResizable(false);
 
-        board = new Board();
-        board.setup();
         setupKeylist(gameScene);
         Handler.kl = kL;
 
@@ -103,15 +102,14 @@ public class Main extends Application {
         mainCanvas = new Canvas(WIDTH,HEIGHT);
         root.getChildren().add(mainCanvas);
 
-
         gameScene = new Scene(root, 0, 0);
 
-
-        mainStage.setWidth(Main.WIDTH);
-        mainStage.setHeight(Main.HEIGHT+39);
+        mainStage.setWidth(Main.WIDTH+16);
+        mainStage.setHeight(Main.HEIGHT+38);
 
         mainStage.setTitle("Game");
         mainStage.setScene(gameScene);
+
     }
 
     /**
@@ -122,5 +120,15 @@ public class Main extends Application {
         System.out.println("start");
         launch(args);
         System.out.println("done");
+    }
+
+    @Override
+    public void mouseDragged(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseMoved(MouseEvent e) {
+        System.out.println("Hey");
     }
 }

@@ -15,7 +15,7 @@ public class AnimationController extends AnimationTimer{
     /**
      * The instance of the Display class that draws to the window.
      */
-    private Display display;
+    public static Display display;
 
     /**
      * The amount of time since the last time handle(long) was called.
