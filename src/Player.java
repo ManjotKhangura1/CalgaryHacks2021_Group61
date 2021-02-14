@@ -25,6 +25,7 @@ public class Player extends GameObject{
     private int animCounter = 0;
     private String playerSprite;
     private Handler playerHandler;
+    private int frameTimer = 0;
 
     Player(int X, int Y, Direction orientation, Handler handler){
         this.playerX = X;
@@ -84,6 +85,8 @@ public class Player extends GameObject{
         if (iStepY != 0 || iStepX != 0) {
             return;
         }
+        Main.board.drawTile(playerX,playerY);
+        Main.board.drawTile(playerX,playerY-1);
         d.playerTile(playerX,playerY,playerSprite, iStepX, iStepY);
     }
 
@@ -94,45 +97,58 @@ public class Player extends GameObject{
                 iStepX -= stepSize;
                 Main.board.drawTile(playerX+1,playerY);
                 Main.board.drawTile(playerX+1,playerY-1);
-                Main.board.drawTile(playerX,playerY);
-                Main.board.drawTile(playerX,playerY-1);
+                xOffset = -1;
+                yOffset = 0;
             } else {
                 iStepX += stepSize;
                 Main.board.drawTile(playerX-1,playerY);
                 Main.board.drawTile(playerX-1,playerY-1);
-                Main.board.drawTile(playerX,playerY);
-                Main.board.drawTile(playerX,playerY-1);
+                xOffset = 1;
+                yOffset = 0;
             }
-
+            Main.board.drawTile(playerX,playerY);
+            Main.board.drawTile(playerX,playerY-1);
             playerHandler.display.playerTile(playerX, playerY, playerSprite, iStepX, iStepY);
-            return;
         } else if (iStepY != 0) {
             if (iStepY > 0) {
                 iStepY -= stepSize;
                 Main.board.drawTile(playerX,playerY+1);
-                Main.board.drawTile(playerX,playerY);
-                Main.board.drawTile(playerX,playerY-1);
+                xOffset = 0;
+                yOffset = -1;
             } else {
                 iStepY += stepSize;
-                Main.board.drawTile(playerX,playerY-1);
-                Main.board.drawTile(playerX,playerY);
                 Main.board.drawTile(playerX,playerY-2);
+                xOffset = 0;
+                yOffset = 1;
             }
+            Main.board.drawTile(playerX,playerY);
+            Main.board.drawTile(playerX,playerY-1);
             playerHandler.display.playerTile(playerX, playerY, playerSprite, iStepX, iStepY);
-            return;
+        } else {
+            if (Handler.kl.isPressed(KeyCode.W)) {
+                setRotation(Direction.Up);
+                playerMove(Direction.Up);
+            } else if (Handler.kl.isPressed(KeyCode.A)) {
+                setRotation(Direction.Left);
+                playerMove(Direction.Left);
+            } else if (Handler.kl.isPressed(KeyCode.S)) {
+                setRotation(Direction.Down);
+                playerMove(Direction.Down);
+            } else if (Handler.kl.isPressed(KeyCode.D)) {
+                setRotation(Direction.Right);
+                playerMove(Direction.Right);
+            } else {
+                xOffset = 0;
+                yOffset = 0;
+            }
         }
-        if (Handler.kl.isPressed(KeyCode.W)) {
-            setRotation(Direction.Up);
-            playerMove(Direction.Up);
-        } else if (Handler.kl.isPressed(KeyCode.A)) {
-            setRotation(Direction.Left);
-            playerMove(Direction.Left);
-        } else if (Handler.kl.isPressed(KeyCode.S)) {
-            setRotation(Direction.Down);
-            playerMove(Direction.Down);
-        } else if (Handler.kl.isPressed(KeyCode.D)) {
-            setRotation(Direction.Right);
-            playerMove(Direction.Right);
+
+
+        if (frameTimer <= 0) {
+            animCounter += 1;
+            frameTimer = 20;
+        } else {
+            frameTimer -= 1;
         }
 
         int index;
