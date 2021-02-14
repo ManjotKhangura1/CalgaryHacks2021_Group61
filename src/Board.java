@@ -7,7 +7,7 @@ public class Board {
 
     Board() {
         for (int i = 0; i < width * height; i++) {
-            tileBoard.set(i, new Tile(null, 0, null));
+            tileBoard.add(new Tile(null, 0, null));
         }
     }
 
@@ -26,19 +26,19 @@ public class Board {
                     getTile(i,j).setValues(TileID.Road, 0, null);
                 } else if (i < 2 || i > width - 3) {
                     getTile(i, j).setValues(TileID.Environment, 0, null);
-                } else if (j > width - 3) {
+                } else if (j > height - 3) {
                     getTile(i,j).setValues(TileID.House, 0, null);
                 } else if (i > 10) {
                     getTile(i,j).setValues(TileID.Driveway, 0, null);
                 } else {
-                    getTile(i,j).setValues(TileID.Driveway, 0, null);
+                    getTile(i,j).setValues(TileID.Driveway, 1, null);
                 }
             }
         }
     }
 
     public Tile getTile(int x, int y) {
-        return tileBoard.get(30 * y + x);
+        return tileBoard.get(width * y + x);
     }
 
 }
