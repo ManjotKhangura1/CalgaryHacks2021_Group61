@@ -61,82 +61,6 @@ public class MainMenu extends Handler{
     }
 
     /**
-     * Method that controls click locations
-     */
-    public void recieveClick() {
-        for (Button b:buttonList) {
-            b.menuTriggerClick();
-        }
-
-    }
-
-    /**
-     * method that sets the menu state
-     * @param state - Menu State you want to change to.
-     */
-    public void setState(MenuState state) {
-        MainMenu.state = state;
-        this.timeToUpdate = true;
-    }
-
-    /**
-     * Method that takes name of button and executes action
-     * @param text - Name of the button.
-     */
-    public void menuClickHandler(String text) {
-        if(text == "Play game") {
-            setState(MenuState.playmenu);
-        }
-        else if (text == "Load game") {
-            setState(MenuState.loadmenu);
-        }
-        else if (text == "Options") {
-            setState(MenuState.optionsmenu);
-        }
-        else if (text == "Quit") {
-            System.exit(1);
-        }
-        else if (text == "Back") {
-            setState(MenuState.mainmenu);
-        }
-
-        else if (text == "^") {
-            Main.arenaHeight = Main.arenaHeight + 100;
-            Main.arenaWidth = Main.arenaWidth + 100;
-            handler.setup();
-        }
-        else if (text == "v") {
-            Main.arenaHeight = Main.arenaHeight - 100;
-            Main.arenaWidth = Main.arenaWidth - 100;
-            handler.setup();
-        }
-        else if (text == "Defaults") {
-            Main.arenaHeight = 1500;
-            Main.arenaWidth = 2000;
-            handler.setup();
-        }
-        else if (text == "^ ") {
-            handler.setup();
-        }
-        else if (text == "v ") {
-            handler.setup();
-        }
-        else if (text == "Defaults ") {
-            handler.setup();
-        }
-        else if (text == "^  ") {
-            handler.setup();
-        }
-        else if (text == "v  ") {
-            handler.setup();
-        }
-        else if (text == "Defaults  ") {
-            handler.setup();
-        }
-        this.timeToUpdate = true;
-    }
-
-    /**
      * method that Updates and controls which buttons are displayed
      */
     public void update() {
@@ -148,12 +72,6 @@ public class MainMenu extends Handler{
         reset();
         if (state == MenuState.mainmenu) {
             renderMainMenu();
-        }
-        else if (state == MenuState.loadmenu) {
-            renderLoadMenu();
-        }
-        else if (state == MenuState.optionsmenu) {
-            renderOptionsMenu();
         }
         else if (state == MenuState.playmenu) {
             renderPlayMenu();
@@ -184,33 +102,6 @@ public class MainMenu extends Handler{
 
     }
     /**
-     * method that creates the buttons for the options menu
-     */
-    public void renderOptionsMenu() {
-        Color cc = Color.color(0, 0, 0.5);
-
-        addButton(new Button(500,30,100,100,cc,"^"));
-
-        addButton(new Button(610,30,100,100,cc,"v"));
-
-        addButton(new Button(750,30,150,100,cc,"Defaults"));
-
-        addButton(new Button(500,210,100,100,cc,"^ "));
-
-        addButton(new Button(610,210,100,100,cc,"v "));
-
-        addButton(new Button(750,210,150,100,cc,"Defaults "));
-
-        addButton(new Button(500,390,100,100,cc,"^  "));
-
-        addButton(new Button(610,390,100,100,cc,"v  "));
-
-        addButton(new Button(750,390,150,100,cc,"Defaults  "));
-
-        addButton(new Button(280,570,400,100,cc,"Back"));
-
-    }
-    /**
      * method that creates the buttons for the load menu
      */
     public void renderLoadMenu() {
@@ -228,11 +119,7 @@ public class MainMenu extends Handler{
 
         addButton(new Button(280,30,400,100,c,"Play game"));
 
-        addButton(new Button(280,210,400,100,c,"Load game"));
-
-        addButton(new Button(280,390,400,100,c,"Options"));
-
-        addButton(new Button(280,570,400,100,c,"Quit"));
+        addButton(new Button(280,210,400,100,c,"Quit"));
 
 
     }
