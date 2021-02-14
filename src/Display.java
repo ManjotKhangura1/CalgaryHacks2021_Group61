@@ -123,7 +123,7 @@ public class Display {
         {
             gC.setFill(Color.BLACK);
         }
-        gC.fillText(text, x + (width/2), y + (height/2));
+        gC.fillText(text, x + (width/2.3), y + (height/2));
     }
 
 }

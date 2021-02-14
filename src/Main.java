@@ -133,11 +133,13 @@ public class Main extends Application {
 
     public static void backgroundMusic() throws IOException {
 
-        InputStream songFile = new FileInputStream("out/production/CalgaryHacks2021_Group61/images/file3.wav");
+        InputStream songFile = new FileInputStream("out/production/CalgaryHacks2021_Group61/images/file3.mid");
 
         song = new AudioStream(songFile);
 
         AudioPlayer.player.start(song);
+
+        //player.start(loop);
 
     }
 
