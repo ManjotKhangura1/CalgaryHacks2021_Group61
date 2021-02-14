@@ -92,6 +92,46 @@ public class Player extends GameObject{
         } else if (Handler.kl.isPressed(KeyCode.D)) {
             playerMove(Direction.Right);
         }
+
+        /*int index;
+        if(xOffset == -1){
+            index = animCounter % playerSpriteLeft.length;
+            String prefix = "/images/PlayerSpriteLeft/";
+            String postfix = ".png";
+            playerSprite = prefix+playerSpriteLeft[index]+postfix;
+        }
+        else if(xOffset == 1){
+            index = animCounter % playerSpriteRight.length;
+            String prefix = "/images/PlayerSpriteRight/";
+            String postfix = ".png";
+            playerSprite = prefix+playerSpriteRight[index]+postfix;
+        }
+        else if(yOffset == -1){
+            index = animCounter % playerSpriteBack.length;
+            String prefix = "/images/PlayerSpriteBack/";
+            String postfix = ".png";
+            playerSprite = prefix+playerSpriteBack[index]+postfix;
+        }
+        else if(yOffset == 1){
+            index = animCounter % playerSpriteFront.length;
+            String prefix = "/images/PlayerSpriteFront/";
+            String postfix = ".png";
+            playerSprite = prefix+playerSpriteFront[index]+postfix;
+        }
+        else{
+            if(getPlayerOrientation() == Direction.Up){
+                index = animCounter % playerSpriteBackIdle.length;
+                String prefix = "/images/PlayerSpriteBackIdle/";
+                String postfix = ".png";
+                playerSprite = prefix+playerSpriteBackIdle[index]+postfix;
+            }
+            else{
+                index = animCounter % playerSpriteFrontIdle.length;
+                String prefix = "/images/PlayerSpriteFrontIdle/";
+                String postfix = ".png";
+                playerSprite = prefix+playerSpriteFrontIdle[index]+postfix;
+            }
+        }*/
     }
 
     public int getTemperature() {return temperature;}
