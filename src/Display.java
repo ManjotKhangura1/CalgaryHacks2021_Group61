@@ -60,17 +60,14 @@ public class Display {
             }
         }
         else if(t.getTileID() == TileID.Environment){
-            int randNum = 0;
+            /*int randNum = 0;
             if(randNum == 1){image = new Image("images/env1.png");}
             if(randNum == 2){image = new Image("images/env2.png");}
             if(randNum == 3){image = new Image("images/env3.png");}
             if(randNum == 4){image = new Image("images/env4.png");}
             if(randNum == 5){image = new Image("images/env5.png");}
-            if(randNum == 6){image = new Image("images/env6.png");}
-            else
-            {
+            if(randNum == 6){image = new Image("images/env6.png");}*/
                 image = new Image("images/Environment01.png");
-            }
             gC.setFill(Color.DARKOLIVEGREEN);
         }
         else if(t.getTileID() == TileID.House){
