@@ -9,6 +9,15 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import sun.audio.AudioData;
+import sun.audio.AudioPlayer;
+import sun.audio.AudioStream;
+import sun.audio.ContinuousAudioDataStream;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * The Game object. It instantiates many of the key classes.
@@ -51,6 +60,9 @@ public class Main extends Application {
 
     public static Board board;
 
+    public static AudioPlayer player = AudioPlayer.player;
+    public static AudioStream song;
+
     public void setupKeylist(Scene gameScene) {
         kL = new Keylist();
         gameScene.addEventHandler(KeyEvent.KEY_PRESSED, kL);
@@ -85,6 +97,11 @@ public class Main extends Application {
 
     }
 
+    @Override
+    public void stop() {
+        player.stop(song);
+    }
+
     /**
      * Creates an instance of the Display class
      * @return The created instance.
@@ -114,12 +131,23 @@ public class Main extends Application {
         mainStage.setScene(gameScene);
     }
 
+    public static void backgroundMusic() throws IOException {
+
+        InputStream songFile = new FileInputStream("out/production/CalgaryHacks2021_Group61/images/file3.wav");
+
+        song = new AudioStream(songFile);
+
+        AudioPlayer.player.start(song);
+
+    }
+
     /**
      * The main method.
      * @param args The arguments passed to the program.
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         System.out.println("start");
+        backgroundMusic();
         launch(args);
         System.out.println("done");
     }
