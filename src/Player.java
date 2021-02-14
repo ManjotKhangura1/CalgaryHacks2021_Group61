@@ -69,6 +69,7 @@ public class Player extends GameObject{
         int snow = Main.board.getTile(x,y).getSnowLevel();
         Main.board.getTile(x,y).setSnowLevel(0);
         t.setSnowLevel(snow + t.getSnowLevel());
+        Main.board.drawTile(x+xOff,y+yOff);
     }
 
     public void setRotation(Direction direction) {
