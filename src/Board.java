@@ -7,7 +7,7 @@ public class Board {
 
     Board() {
         for (int i = 0; i < width * height; i++) {
-            tileBoard.set(i, new Tile(null, 0, null));
+            tileBoard.add(new Tile(null, 0, null));
         }
     }
 
@@ -38,7 +38,7 @@ public class Board {
     }
 
     public Tile getTile(int x, int y) {
-        return tileBoard.get(30 * y + x);
+        return tileBoard.get(width * y + x);
     }
 
 }

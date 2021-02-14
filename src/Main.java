@@ -42,10 +42,18 @@ public class Main extends Application {
     private Canvas mainCanvas;
 
 
+    private Keylist kL;
+
     /**
      * The game's scene
      */
     private Scene gameScene;
+
+    public void setupKeylist(Scene gameScene) {
+        kL = new Keylist();
+        gameScene.addEventHandler(KeyEvent.KEY_PRESSED, kL);
+        gameScene.addEventHandler(KeyEvent.KEY_RELEASED, kL);
+    }
 
     /**
      * Sets everything up, and starts the game.
@@ -67,6 +75,9 @@ public class Main extends Application {
         mainStage.show();
         mainStage.centerOnScreen();
         mainStage.setResizable(false);
+
+        setupKeylist(gameScene);
+        Handler.kl = kL;
 
     }
 

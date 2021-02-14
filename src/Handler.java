@@ -6,6 +6,7 @@ import java.util.Random;
 import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.scene.input.KeyCode;
 
 /**
  * This class contains every GameObject, and references to every active class.
@@ -19,6 +20,8 @@ public class Handler {
 
     public LinkedList<GameObject> object = new LinkedList<GameObject>();
     public Player player = null;
+
+    public static Keylist kl;
 
     public void setMainStage(Stage mainStage) {
         this.mainStage = mainStage;
@@ -40,6 +43,9 @@ public class Handler {
         d.displayRectangle(10,10, 50, 50, Color.RED);
         d.setupNextFrame();
         d.drawGameFrame();
+        if (kl.isPressed(KeyCode.W)) {
+            d.displayRectangle(10, 10, 10, 10, Color.RED);
+        }
     }
 
 

@@ -1,6 +1,6 @@
 import java.util.logging.Handler;
 
-public class Player{
+public class Player extends GameObject{
 
     private int temperature;
     private int shovelLevel;
