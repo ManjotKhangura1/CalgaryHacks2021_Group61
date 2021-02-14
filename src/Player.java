@@ -3,6 +3,13 @@ import javafx.scene.paint.Color;
 
 public class Player extends GameObject{
 
+    int[] playerSpriteBack = {1, 2};
+    int[] playerSpriteBackIdle = {1, 2, 3, 4, 5, 6, 7, 8};
+    int[] playerSpriteFront = {1, 2};
+    int[] playerSpriteFrontIdle = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30};
+    int[] playerSpriteLeft = {1, 2};
+    int[] playerSpriteRight = {1, 2};
+
     private int temperature;
     private int shovelLevel;
     private int walkSpeed;
@@ -11,8 +18,12 @@ public class Player extends GameObject{
     private Direction playerOrientation;
     private int playerX;
     private int playerY;
+    private int xOffset = 0;
+    private int yOffset = 0;
     private int iStepX = 0;
     private int iStepY = 0;
+    private int animCounter = 0;
+    private String playerSprite;
     private Handler playerHandler;
 
     Player(int X, int Y, Direction orientation, Handler handler){
@@ -100,13 +111,57 @@ public class Player extends GameObject{
             return;
         }
         if (Handler.kl.isPressed(KeyCode.W)) {
+            setRotation(Direction.Up);
             playerMove(Direction.Up);
         } else if (Handler.kl.isPressed(KeyCode.A)) {
+            setRotation(Direction.Left);
             playerMove(Direction.Left);
         } else if (Handler.kl.isPressed(KeyCode.S)) {
+            setRotation(Direction.Down);
             playerMove(Direction.Down);
         } else if (Handler.kl.isPressed(KeyCode.D)) {
+            setRotation(Direction.Right);
             playerMove(Direction.Right);
+        }
+
+        int index;
+        if(xOffset == -1){
+            index = animCounter % playerSpriteLeft.length;
+            String prefix = "/images/PlayerSpriteLeft/";
+            String postfix = ".png";
+            playerSprite = prefix+playerSpriteLeft[index]+postfix;
+        }
+        else if(xOffset == 1){
+            index = animCounter % playerSpriteRight.length;
+            String prefix = "/images/PlayerSpriteRight/";
+            String postfix = ".png";
+            playerSprite = prefix+playerSpriteRight[index]+postfix;
+        }
+        else if(yOffset == -1){
+            index = animCounter % playerSpriteBack.length;
+            String prefix = "/images/PlayerSpriteBack/";
+            String postfix = ".png";
+            playerSprite = prefix+playerSpriteBack[index]+postfix;
+        }
+        else if(yOffset == 1){
+            index = animCounter % playerSpriteFront.length;
+            String prefix = "/images/PlayerSpriteFront/";
+            String postfix = ".png";
+            playerSprite = prefix+playerSpriteFront[index]+postfix;
+        }
+        else{
+            if(getPlayerOrientation() == Direction.Up){
+                index = animCounter % playerSpriteBackIdle.length;
+                String prefix = "/images/PlayerSpriteBackIdle/";
+                String postfix = ".png";
+                playerSprite = prefix+playerSpriteBackIdle[index]+postfix;
+            }
+            else{
+                index = animCounter % playerSpriteFrontIdle.length;
+                String prefix = "/images/PlayerSpriteFrontIdle/";
+                String postfix = ".png";
+                playerSprite = prefix+playerSpriteFrontIdle[index]+postfix;
+            }
         }
     }
 
