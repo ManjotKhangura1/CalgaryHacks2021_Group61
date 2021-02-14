@@ -39,7 +39,6 @@ public class Handler {
         d.setupNextFrame();
         d.displayRectangle(10,10, 50, 50, Color.RED);
         d.setupNextFrame();
-        d.drawGameFrame();
         Main.board.display(d);
     }
 
