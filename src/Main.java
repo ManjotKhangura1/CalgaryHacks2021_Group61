@@ -19,7 +19,7 @@ public class Main extends Application {
     /**
      * The width of the window
      */
-    public static final int WIDTH = 1280;
+    public static final int WIDTH = 1360;
 
     /**
      * The height of the window
@@ -47,6 +47,8 @@ public class Main extends Application {
      */
     private Scene gameScene;
 
+    public static Board board;
+
     /**
      * Sets everything up, and starts the game.
      * @param mainStage the stage to make things on.
@@ -68,6 +70,8 @@ public class Main extends Application {
         mainStage.centerOnScreen();
         mainStage.setResizable(false);
 
+        board = new Board();
+        board.setup();
     }
 
     /**
