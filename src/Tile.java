@@ -15,6 +15,17 @@ public class Tile {
         this.snowLevel = snowLevel;
         this.occupant = occupant;
     }
+    public boolean hasOccupant()
+    {
+        if (this.occupant != null)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 
     public void setTileID(TileID tileID) {
         this.tileID = tileID;
