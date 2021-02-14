@@ -28,11 +28,11 @@ public class Display {
         this.gC = gC;
     }
 
-    public static int randomInteger() {
+    /*public static int randomInteger() {
         Random randomNumber = new Random();
         int randNum = randomNumber.nextInt(20);
         return randNum;
-    }
+    }*/
 
     public void displayTile(Tile t, int x, int y) {
         // Takes the tile, and the x,y coordinates
@@ -60,7 +60,7 @@ public class Display {
             }
         }
         else if(t.getTileID() == TileID.Environment){
-            int randNum = randomInteger();
+            int randNum = 0;
             if(randNum == 1){image = new Image("images/env1.png");}
             if(randNum == 2){image = new Image("images/env2.png");}
             if(randNum == 3){image = new Image("images/env3.png");}
