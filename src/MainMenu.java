@@ -71,11 +71,12 @@ public class MainMenu extends Handler{
         this.timeToUpdate = false;
         reset();
         if (state == MenuState.mainmenu) {
-            renderMainMenu();
+            //renderMainMenu();
         }
         else if (state == MenuState.playmenu) {
-            renderPlayMenu();
+            //renderPlayMenu();
         }
+        renderPlayMenu();
     }
 
     /**
@@ -107,9 +108,9 @@ public class MainMenu extends Handler{
     public void renderMainMenu() {
         Color c = Color.color(0, 0.5, 0.5);
 
-        addButton(new Button(290,30,400,100,c,"Play game"));
+        addButton(new Button(450,180,400,100,c,"Press P to play"));
 
-        addButton(new Button(290,210,400,100,c,"Quit"));
+        addButton(new Button(450,320,400,100,c,"Quit"));
 
 
     }

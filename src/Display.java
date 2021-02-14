@@ -46,8 +46,9 @@ public class Display {
                 gC.setFill(Color.DARKGREY);
             }
             else {
-                image = new Image("images/Driveway.png");
-                gC.setFill(Color.DARKGREY);
+                String prefix = "images/Driveway/";
+                String postfix = ".png";
+                image = new Image(prefix+t.getVariant()+postfix);
             }
         }
         else if(t.getTileID() == TileID.Environment){
@@ -76,9 +77,15 @@ public class Display {
             image = new Image("images/House.png");
             gC.setFill(Color.SADDLEBROWN);
         }
-        else if(t.getTileID() == TileID.Road){
-            image = new Image("images/RoadSprite001.png");
-            gC.setFill(Color.GREY);
+        else if(t.getTileID() == TileID.RoadTop){
+            String prefix = "images/RoadSpriteTop/";
+            String postfix = ".png";
+            image = new Image(prefix+t.getVariant()+postfix);
+        }
+        else if(t.getTileID() == TileID.RoadBottom){
+            String prefix = "images/RoadSpriteBottom/";
+            String postfix = ".png";
+            image = new Image(prefix+t.getVariant()+postfix);
         }
         gC.drawImage(image, x*pixelScale, y*pixelScale);
         //gC.fillRect(x*pixelScale, y*pixelScale, pixelScale, pixelScale);
@@ -141,7 +148,7 @@ public class Display {
         {
             gC.setFill(Color.BLACK);
         }
-        gC.fillText(text, x + (width/2), y + (height/2));
+        gC.fillText(text, x + (width/2.3), y + (height/2));
     }
 
 }

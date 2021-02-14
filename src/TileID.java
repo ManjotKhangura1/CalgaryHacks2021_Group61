@@ -1,5 +1,6 @@
 public enum TileID {
-    Road(),
+    RoadTop(),
+    RoadBottom(),
     Driveway(),
     House(),
     Environment(),

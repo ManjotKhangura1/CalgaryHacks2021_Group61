@@ -60,7 +60,7 @@ public class Player extends GameObject{
 
     public void push(int x, int y, int xOff, int yOff) {
         Tile t = Main.board.getTile(x + xOff,y + yOff);
-        if (t.getTileID() == TileID.Road || t.getTileID() == TileID.House) {
+        if (t.getTileID() == TileID.RoadTop || t.getTileID() == TileID.RoadBottom || t.getTileID() == TileID.House) {
             if (x < Main.board.width / 2) {
                 push(x, y, -1, 0);
             } else {
