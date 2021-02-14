@@ -24,6 +24,7 @@ public class Handler {
     public Player player = null;
 
     public static Keylist kl;
+    public Display display;
 
     public void setMainStage(Stage mainStage) {
         this.mainStage = mainStage;
@@ -42,6 +43,7 @@ public class Handler {
     }
 
     public void render(Display d) {
+        display = d;
         if (!hasRendered || kl.justPressed(KeyCode.SPACE)) {
             d.drawGameFrame();
             hasRendered = true;

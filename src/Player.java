@@ -11,6 +11,8 @@ public class Player extends GameObject{
     private Direction playerOrientation;
     private int playerX;
     private int playerY;
+    private int iStepX = 0;
+    private int iStepY = 0;
     private Handler playerHandler;
 
     Player(int X, int Y, Direction orientation, Handler handler){
@@ -20,17 +22,26 @@ public class Player extends GameObject{
         this.playerHandler = handler;
     }
 
-    public void playerMove(Direction direction){
+    public void playerMove(Direction direction) {
+        int xOffset = 0;
+        int yOffset = 0;
         if (direction == Direction.Left) {
-            this.playerX -= 1;
+            xOffset = -1;
         } else if (direction == Direction.Right) {
-            this.playerX += 1;
+            xOffset = 1;
         } else if (direction == Direction.Down) {
-            this.playerY += 1;
+            yOffset = 1;
         } else if (direction == Direction.Up) {
-            this.playerY -= 1;
+            yOffset = -1;
+        }
+        if (Main.board.getTile(playerX + xOffset, playerY + yOffset).getTileID() != TileID.Driveway) {
+            return;
         }
         setRotation(direction);
+        playerY += yOffset;
+        playerX += xOffset;
+        iStepX = (-xOffset) * playerHandler.display.pixelScale;
+        iStepY = (-yOffset) * playerHandler.display.pixelScale;
     }
 
     public void setRotation(Direction direction) {
@@ -42,22 +53,43 @@ public class Player extends GameObject{
     }
 
     public void display(Display d) {
-        for (int x = playerX - 1; x <= playerX + 1; x++) {
-            for (int y = playerY - 1; y <= playerY + 1; y++) {
-                Main.board.drawTile(x,y);
-            }
+        if (iStepY != 0 || iStepX != 0) {
+            return;
         }
-        d.redTile(playerX, playerY);
+        d.redTile(playerX,playerY,0,0);
     }
 
     public void tick() {
-        if (Handler.kl.justPressed(KeyCode.W)) {
+        int stepSize = 6;
+        if (iStepX != 0) {
+            if (iStepX > 0) {
+                iStepX -= stepSize;
+                Main.board.drawTile(playerX+1,playerY);
+            } else {
+                iStepX += stepSize;
+                Main.board.drawTile(playerX-1,playerY);
+            }
+
+            playerHandler.display.redTile(playerX, playerY, iStepX, iStepY);
+            return;
+        } else if (iStepY != 0) {
+            if (iStepY > 0) {
+                iStepY -= stepSize;
+                Main.board.drawTile(playerX,playerY+1);
+            } else {
+                iStepY += stepSize;
+                Main.board.drawTile(playerX,playerY-1);
+            }
+            playerHandler.display.redTile(playerX, playerY, iStepX, iStepY);
+            return;
+        }
+        if (Handler.kl.isPressed(KeyCode.W)) {
             playerMove(Direction.Up);
-        } else if (Handler.kl.justPressed(KeyCode.A)) {
+        } else if (Handler.kl.isPressed(KeyCode.A)) {
             playerMove(Direction.Left);
-        } else if (Handler.kl.justPressed(KeyCode.S)) {
+        } else if (Handler.kl.isPressed(KeyCode.S)) {
             playerMove(Direction.Down);
-        } else if (Handler.kl.justPressed(KeyCode.D)) {
+        } else if (Handler.kl.isPressed(KeyCode.D)) {
             playerMove(Direction.Right);
         }
     }
