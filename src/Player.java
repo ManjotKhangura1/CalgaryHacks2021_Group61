@@ -93,9 +93,15 @@ public class Player extends GameObject{
             if (iStepX > 0) {
                 iStepX -= stepSize;
                 Main.board.drawTile(playerX+1,playerY);
+                Main.board.drawTile(playerX+1,playerY-1);
+                Main.board.drawTile(playerX,playerY);
+                Main.board.drawTile(playerX,playerY-1);
             } else {
                 iStepX += stepSize;
                 Main.board.drawTile(playerX-1,playerY);
+                Main.board.drawTile(playerX-1,playerY-1);
+                Main.board.drawTile(playerX,playerY);
+                Main.board.drawTile(playerX,playerY-1);
             }
 
             playerHandler.display.playerTile(playerX, playerY, playerSprite, iStepX, iStepY);
@@ -104,9 +110,13 @@ public class Player extends GameObject{
             if (iStepY > 0) {
                 iStepY -= stepSize;
                 Main.board.drawTile(playerX,playerY+1);
+                Main.board.drawTile(playerX,playerY);
+                Main.board.drawTile(playerX,playerY-1);
             } else {
                 iStepY += stepSize;
                 Main.board.drawTile(playerX,playerY-1);
+                Main.board.drawTile(playerX,playerY);
+                Main.board.drawTile(playerX,playerY-2);
             }
             playerHandler.display.playerTile(playerX, playerY, playerSprite, iStepX, iStepY);
             return;
