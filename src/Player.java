@@ -26,6 +26,7 @@ public class Player extends GameObject{
     private String playerSprite;
     private Handler playerHandler;
     private int frameTimer = 0;
+    int stepSize = 8;
 
     Player(int X, int Y, Direction orientation, Handler handler){
         this.playerX = X;
@@ -70,6 +71,16 @@ public class Player extends GameObject{
         int snow = Main.board.getTile(x,y).getSnowLevel();
         Main.board.getTile(x,y).setSnowLevel(0);
         t.setSnowLevel(snow + t.getSnowLevel());
+        if (snow == 0) {
+            stepSize = 8;
+        } else if (snow == 1) {
+            stepSize = 6;
+        } else if (snow == 2) {
+            stepSize = 4;
+        } else if (snow == 3) {
+            stepSize = 3;
+        }
+        Main.board.drawTile(x,y);
         Main.board.drawTile(x+xOff,y+yOff);
     }
 
@@ -78,7 +89,23 @@ public class Player extends GameObject{
     }
 
     public void playerThrow() {
-
+        int xD = 0;
+        int yD = 0;
+        if (playerOrientation == Direction.Left) {
+            xD = -1;
+            yD = 0;
+        } else if (playerOrientation == Direction.Right) {
+            xD = 1;
+            yD = 0;
+        } else if (playerOrientation == Direction.Up) {
+            xD = 0;
+            yD = -1;
+        } else if (playerOrientation == Direction.Down) {
+            xD = 0;
+            yD = 1;
+        }
+        push(playerX+xD,playerY+yD,xD,yD);
+        push(playerX+xD * 2,playerY+yD * 2,xD,yD);
     }
 
     public void display(Display d) {
@@ -91,7 +118,6 @@ public class Player extends GameObject{
     }
 
     public void tick() {
-        int stepSize = 6;
         if (iStepX != 0) {
             if (iStepX > 0) {
                 iStepX -= stepSize;
@@ -137,6 +163,8 @@ public class Player extends GameObject{
             } else if (Handler.kl.isPressed(KeyCode.D)) {
                 setRotation(Direction.Right);
                 playerMove(Direction.Right);
+            } else if (Handler.kl.justPressed(KeyCode.E)) {
+                playerThrow();
             } else {
                 xOffset = 0;
                 yOffset = 0;

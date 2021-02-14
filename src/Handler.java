@@ -36,11 +36,10 @@ public class Handler {
     }
 
     public void tick() {
-        if (kl.justPressed(KeyCode.P))
+        if (kl.justPressed(KeyCode.P) || kl.justPressed(KeyCode.ENTER))
         {
             setGameStatePlay();
         }
-
         for (int i = 0; i < object.size(); i++) {
             GameObject tempObject = object.get(i);
             tempObject.tick(); // update all

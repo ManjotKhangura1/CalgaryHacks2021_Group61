@@ -51,8 +51,26 @@ public class Display {
             }
         }
         else if(t.getTileID() == TileID.Environment){
-            image = new Image("images/Environment01.png");
-            gC.setFill(Color.DARKOLIVEGREEN);
+            if (t.getSnowLevel() == 3)
+            {
+                image = new Image("images/snowlevel3.png");
+                gC.setFill(Color.DARKGREY);
+            }
+            else if (t.getSnowLevel() == 2)
+            {
+                image = new Image("images/snowlevel2.png");
+                gC.setFill(Color.DARKGREY);
+            }
+            else if (t.getSnowLevel() == 1)
+            {
+                image = new Image("images/snowlevel1.png");
+                gC.setFill(Color.DARKGREY);
+            }
+            else {
+
+                image = new Image("images/Environment01.png");
+                gC.setFill(Color.DARKOLIVEGREEN);
+            }
         }
         else if(t.getTileID() == TileID.House){
             image = new Image("images/House.png");
