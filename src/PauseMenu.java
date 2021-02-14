@@ -87,9 +87,9 @@ public class PauseMenu extends Handler {
         if (state == PauseState.mainPause) {
             renderPauseMenu();
         }
-        else if (state == PauseState.save) {
+        /*else if (state == PauseState.save) {
             renderSaveMenu();
-        }
+        }*/
     }
     /**
      * Method that removes all the buttons from the button list.
@@ -107,36 +107,7 @@ public class PauseMenu extends Handler {
         b.setPauseMenu(this);
         buttonList.add(b);
     }
-    /**
-     * method that takes a created file and saves the list of the handler.
-     */
-    private void renderSaveMenu() {
-        String objects = handler.toString();
 
-        try {
-            FileWriter save = new FileWriter(pathSelecter());
-            save.append(objects);
-            save.close();
-
-        } catch (IOException e) {
-            System.out.println("Cannot Save at this time");
-            e.printStackTrace();
-        }
-
-        state = PauseState.mainPause;
-    }
-    /**
-     * Prompts the user for a file location and a name.
-     * @return - Returns a newly created file, for saving
-     */
-    public File pathSelecter() {
-        Calendar rightNow = Calendar.getInstance();
-        FileChooser fileSelecter = new FileChooser();
-        fileSelecter.setTitle("Select File Path");
-        fileSelecter.setInitialFileName("Save" + rightNow.getTimeInMillis() + ".txt");
-        File selectedFile = fileSelecter.showSaveDialog(mainStage);
-        return selectedFile;
-    }
     /**
      * Method that creates the buttons for the Pause Menu.
      */
