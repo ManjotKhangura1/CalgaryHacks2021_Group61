@@ -71,11 +71,12 @@ public class MainMenu extends Handler{
         this.timeToUpdate = false;
         reset();
         if (state == MenuState.mainmenu) {
-            renderMainMenu();
+            //renderMainMenu();
         }
         else if (state == MenuState.playmenu) {
-            renderPlayMenu();
+            //renderPlayMenu();
         }
+        renderPlayMenu();
     }
 
     /**
