@@ -100,7 +100,7 @@ public class Player extends GameObject{
             playerMove(Direction.Right);
         }
 
-        /*int index;
+        int index;
         if(xOffset == -1){
             index = animCounter % playerSpriteLeft.length;
             String prefix = "/images/PlayerSpriteLeft/";
@@ -138,7 +138,7 @@ public class Player extends GameObject{
                 String postfix = ".png";
                 playerSprite = prefix+playerSpriteFrontIdle[index]+postfix;
             }
-        }*/
+        }
     }
 
     public int getTemperature() {return temperature;}
