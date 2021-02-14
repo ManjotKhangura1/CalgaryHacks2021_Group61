@@ -3,6 +3,9 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
 import javafx.scene.image.Image;
+import sun.security.ec.ECDSAOperations;
+
+import java.util.Random;
 
 /**
  * This class displays everything on screen (the GUI). It is called in a lot of the other classes whenever anything
@@ -23,6 +26,12 @@ public class Display {
      */
     public Display(GraphicsContext gC) {
         this.gC = gC;
+    }
+
+    public static int randomInteger() {
+        Random randomNumber = new Random();
+        int randNum = randomNumber.nextInt(20);
+        return randNum;
     }
 
     public void displayTile(Tile t, int x, int y) {
@@ -51,7 +60,17 @@ public class Display {
             }
         }
         else if(t.getTileID() == TileID.Environment){
-            image = new Image("images/Environment01.png");
+            int randNum = randomInteger();
+            if(randNum == 1){image = new Image("images/env1.png");}
+            if(randNum == 2){image = new Image("images/env2.png");}
+            if(randNum == 3){image = new Image("images/env3.png");}
+            if(randNum == 4){image = new Image("images/env4.png");}
+            if(randNum == 5){image = new Image("images/env5.png");}
+            if(randNum == 6){image = new Image("images/env6.png");}
+            else
+            {
+                image = new Image("images/Environment01.png");
+            }
             gC.setFill(Color.DARKOLIVEGREEN);
         }
         else if(t.getTileID() == TileID.House){
