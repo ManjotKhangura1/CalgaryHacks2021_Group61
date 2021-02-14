@@ -49,6 +49,11 @@ public class Display {
         //gC.fillRect(x*pixelScale, y*pixelScale, pixelScale, pixelScale);
     }
 
+
+    public void redTile(int x, int y) {
+        displayRectangle(x*pixelScale, y*pixelScale, pixelScale, pixelScale, Color.RED);
+    }
+
     // Example
     public void displayRectangle(int x, int y, int width, int height, Color color) {
         gC.setFill(color);
@@ -62,6 +67,7 @@ public class Display {
     }
 
     public void drawGameFrame(){
+        Main.board.display(this);
     }
 
     public void drawIntroFrame(){
