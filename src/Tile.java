@@ -33,6 +33,9 @@ public class Tile {
 
     public void setSnowLevel(int snowLevel) {
         this.snowLevel = snowLevel;
+        if (this.snowLevel > 3) {
+            this.snowLevel = 3;
+        }
     }
 
     public void setOccupant(Object occupant) {

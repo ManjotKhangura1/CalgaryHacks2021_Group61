@@ -68,7 +68,7 @@ public class Display {
 
     public void playerTile(int x, int y, String sprite, int offX, int offY) {
         Image image = new Image(sprite);
-        gC.drawImage(image, x*pixelScale + offX, y*pixelScale + offY);
+        gC.drawImage(image, x*pixelScale + offX, y*pixelScale + offY - pixelScale);
     }
 
 
