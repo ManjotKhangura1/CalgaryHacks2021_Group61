@@ -5,6 +5,8 @@ public class Board {
     private final int width = 28;
     private final int height = 20;
 
+    Display d;
+
     Board() {
         for (int i = 0; i < width * height; i++) {
             tileBoard.add(new Tile(null, 0, null));
@@ -12,11 +14,16 @@ public class Board {
     }
 
     public void display(Display d) {
+        this.d = d;
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {
-                d.displayTile(getTile(i,j), i, j);
+                drawTile(i, j);
             }
         }
+    }
+
+    public void drawTile(int x, int y) {
+        d.displayTile(getTile(x,y), x, y);
     }
 
     public void setup() {

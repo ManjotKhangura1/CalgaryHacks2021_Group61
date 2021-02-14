@@ -1,6 +1,7 @@
-import java.util.logging.Handler;
+import javafx.scene.input.KeyCode;
+import javafx.scene.paint.Color;
 
-public class Player{
+public class Player extends GameObject{
 
     private int temperature;
     private int shovelLevel;
@@ -10,6 +11,8 @@ public class Player{
     private Direction playerOrientation;
     private int playerX;
     private int playerY;
+    private int iStepX = 0;
+    private int iStepY = 0;
     private Handler playerHandler;
 
     Player(int X, int Y, Direction orientation, Handler handler){
@@ -19,16 +22,76 @@ public class Player{
         this.playerHandler = handler;
     }
 
-    public void playerMove(int xOffset, int yOffset){
+    public void playerMove(Direction direction) {
+        int xOffset = 0;
+        int yOffset = 0;
+        if (direction == Direction.Left) {
+            xOffset = -1;
+        } else if (direction == Direction.Right) {
+            xOffset = 1;
+        } else if (direction == Direction.Down) {
+            yOffset = 1;
+        } else if (direction == Direction.Up) {
+            yOffset = -1;
+        }
+        if (Main.board.getTile(playerX + xOffset, playerY + yOffset).getTileID() != TileID.Driveway) {
+            return;
+        }
+        setRotation(direction);
+        playerY += yOffset;
+        playerX += xOffset;
+        iStepX = (-xOffset) * playerHandler.display.pixelScale;
+        iStepY = (-yOffset) * playerHandler.display.pixelScale;
+    }
+
+    public void setRotation(Direction direction) {
+        this.playerOrientation = direction;
+    }
+
+    public void playerThrow() {
 
     }
 
-    public void playerThrow(){
-
+    public void display(Display d) {
+        if (iStepY != 0 || iStepX != 0) {
+            return;
+        }
+        d.redTile(playerX,playerY,0,0);
     }
 
-    public void tick(){
+    public void tick() {
+        int stepSize = 6;
+        if (iStepX != 0) {
+            if (iStepX > 0) {
+                iStepX -= stepSize;
+                Main.board.drawTile(playerX+1,playerY);
+            } else {
+                iStepX += stepSize;
+                Main.board.drawTile(playerX-1,playerY);
+            }
 
+            playerHandler.display.redTile(playerX, playerY, iStepX, iStepY);
+            return;
+        } else if (iStepY != 0) {
+            if (iStepY > 0) {
+                iStepY -= stepSize;
+                Main.board.drawTile(playerX,playerY+1);
+            } else {
+                iStepY += stepSize;
+                Main.board.drawTile(playerX,playerY-1);
+            }
+            playerHandler.display.redTile(playerX, playerY, iStepX, iStepY);
+            return;
+        }
+        if (Handler.kl.isPressed(KeyCode.W)) {
+            playerMove(Direction.Up);
+        } else if (Handler.kl.isPressed(KeyCode.A)) {
+            playerMove(Direction.Left);
+        } else if (Handler.kl.isPressed(KeyCode.S)) {
+            playerMove(Direction.Down);
+        } else if (Handler.kl.isPressed(KeyCode.D)) {
+            playerMove(Direction.Right);
+        }
     }
 
     public int getTemperature() {return temperature;}

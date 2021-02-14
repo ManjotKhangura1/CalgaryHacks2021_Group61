@@ -10,7 +10,7 @@ import javafx.scene.image.Image;
  */
 public class Display {
 
-    private int pixelScale = 48;
+    public int pixelScale = 48;
 
     /**
      * Instance variable to call on the canvas of javafx to draw objects
@@ -28,30 +28,30 @@ public class Display {
     public void displayTile(Tile t, int x, int y) {
         // Takes the tile, and the x,y coordinates
         // Determines the actual screen position to draw the tile, and draws ità
-        Image image = null;
+        Image image = new Image("images/RoadSprite001.png");
         if(t.getTileID() == TileID.Driveway){
-            String prefix = "images/Driveway/";
-            String postfix = ".png";
-            image = new Image(prefix + t.getVariant() + postfix);
+            image = new Image("images/Driveway.png");
+            gC.setFill(Color.DARKGREY);
         }
         else if(t.getTileID() == TileID.Environment){
             image = new Image("images/Environment01.png");
+            gC.setFill(Color.DARKOLIVEGREEN);
         }
         else if(t.getTileID() == TileID.House){
             image = new Image("images/House.png");
+            gC.setFill(Color.SADDLEBROWN);
         }
-        else if(t.getTileID() == TileID.RoadTop){
-            String prefix = "images/RoadSpriteTop/";
-            String postfix = ".png";
-            image = new Image(prefix + t.getVariant() + postfix);
-        }
-        else if(t.getTileID() == TileID.RoadBottom){
-            String prefix = "images/RoadSpriteBottom/";
-            String postfix = ".png";
-            image = new Image(prefix + t.getVariant() + postfix);
+        else if(t.getTileID() == TileID.Road){
+            image = new Image("images/RoadSprite001.png");
+            gC.setFill(Color.GREY);
         }
         gC.drawImage(image, x*pixelScale, y*pixelScale);
         //gC.fillRect(x*pixelScale, y*pixelScale, pixelScale, pixelScale);
+    }
+
+
+    public void redTile(int x, int y, int offX, int offY) {
+        displayRectangle(x*pixelScale + offX, y*pixelScale + offY, pixelScale, pixelScale, Color.RED);
     }
 
     // Example
@@ -65,4 +65,13 @@ public class Display {
         gC.setFill(Color.BLACK);
         gC.fillRect(0, 0, Main.WIDTH, Main.HEIGHT);
     }
+
+    public void drawGameFrame(){
+        Main.board.display(this);
+    }
+
+    public void drawIntroFrame(){
+
+    }
+
 }
