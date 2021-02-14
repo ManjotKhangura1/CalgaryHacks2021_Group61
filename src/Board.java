@@ -36,9 +36,9 @@ public class Board {
                 } else if (j > height - 3) {
                     getTile(i,j).setValues(TileID.House, 0, null);
                 } else if (i > 10) {
-                    getTile(i,j).setValues(TileID.Driveway, 0, null);
+                    getTile(i,j).setValues(TileID.Driveway, 3, null);
                 } else {
-                    getTile(i,j).setValues(TileID.Driveway, 1, null);
+                    getTile(i,j).setValues(TileID.Driveway, 3, null);
                 }
             }
         }

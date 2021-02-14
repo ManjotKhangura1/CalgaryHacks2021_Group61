@@ -30,8 +30,25 @@ public class Display {
         // Determines the actual screen position to draw the tile, and draws ità
         Image image = new Image("images/RoadSprite001.png");
         if(t.getTileID() == TileID.Driveway){
-            image = new Image("images/Driveway.png");
-            gC.setFill(Color.DARKGREY);
+            if (t.getSnowLevel() == 3)
+            {
+                image = new Image("images/snowlevel3.png");
+                gC.setFill(Color.DARKGREY);
+            }
+            else if (t.getSnowLevel() == 2)
+            {
+                image = new Image("images/snowlevel2.png");
+                gC.setFill(Color.DARKGREY);
+            }
+            else if (t.getSnowLevel() == 1)
+            {
+                image = new Image("images/snowlevel1.png");
+                gC.setFill(Color.DARKGREY);
+            }
+            else {
+                image = new Image("images/Driveway.png");
+                gC.setFill(Color.DARKGREY);
+            }
         }
         else if(t.getTileID() == TileID.Environment){
             image = new Image("images/Environment01.png");

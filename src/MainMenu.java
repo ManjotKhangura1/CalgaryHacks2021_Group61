@@ -102,24 +102,14 @@ public class MainMenu extends Handler{
 
     }
     /**
-     * method that creates the buttons for the load menu
-     */
-    public void renderLoadMenu() {
-        Color c = Color.color(0, 0.5, 0);
-
-        addButton(new Button(280,30,400,100,c,"Pick File"));
-
-        addButton(new Button(280,570,400,100,c,"Back"));
-    }
-    /**
      * method that creates the buttons for the Main menu.
      */
     public void renderMainMenu() {
         Color c = Color.color(0, 0.5, 0.5);
 
-        addButton(new Button(280,30,400,100,c,"Play game"));
+        addButton(new Button(290,30,400,100,c,"Play game"));
 
-        addButton(new Button(280,210,400,100,c,"Quit"));
+        addButton(new Button(290,210,400,100,c,"Quit"));
 
 
     }
