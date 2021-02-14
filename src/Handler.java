@@ -18,7 +18,9 @@ public class Handler {
 
     public Stage mainStage;
 
-    public LinkedList<GameObject> object = new LinkedList<GameObject>();
+    boolean hasRendered = false;
+
+    public LinkedList<GameObject> object = new LinkedList<>();
     public Player player = null;
 
     public static Keylist kl;
@@ -28,7 +30,8 @@ public class Handler {
     }
 
     public void setup() {
-
+        player = new Player(10, 10, Direction.Left, this);
+        object.add(player);
     }
 
     public void tick() {
@@ -39,14 +42,11 @@ public class Handler {
     }
 
     public void render(Display d) {
-        d.setupNextFrame();
-        d.displayRectangle(10,10, 50, 50, Color.RED);
-        d.setupNextFrame();
-        d.drawGameFrame();
-        Main.board.display(d);
-        if (kl.isPressed(KeyCode.W)) {
-            d.displayRectangle(10, 10, 10, 10, Color.RED);
+        if (!hasRendered || kl.justPressed(KeyCode.SPACE)) {
+            d.drawGameFrame();
+            hasRendered = true;
         }
+        player.display(d);
     }
 
 
