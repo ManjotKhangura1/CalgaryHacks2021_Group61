@@ -19,7 +19,7 @@ public class Main extends Application {
     /**
      * The width of the window
      */
-    public static final int WIDTH = 1280;
+    public static final int WIDTH = 1360;
 
     /**
      * The height of the window
@@ -49,6 +49,8 @@ public class Main extends Application {
      */
     private Scene gameScene;
 
+    public static Board board;
+
     public void setupKeylist(Scene gameScene) {
         kL = new Keylist();
         gameScene.addEventHandler(KeyEvent.KEY_PRESSED, kL);
@@ -76,6 +78,8 @@ public class Main extends Application {
         mainStage.centerOnScreen();
         mainStage.setResizable(false);
 
+        board = new Board();
+        board.setup();
         setupKeylist(gameScene);
         Handler.kl = kL;
 

@@ -43,6 +43,7 @@ public class Handler {
         d.displayRectangle(10,10, 50, 50, Color.RED);
         d.setupNextFrame();
         d.drawGameFrame();
+        Main.board.display(d);
         if (kl.isPressed(KeyCode.W)) {
             d.displayRectangle(10, 10, 10, 10, Color.RED);
         }
