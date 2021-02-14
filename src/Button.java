@@ -20,10 +20,6 @@ public class Button {
      * object of the Main menu
      */
     private MainMenu menu;
-    /**
-     * object of the Pause menu
-     */
-    private PauseMenu pause;
 
     /**
      * Constructor for our buttons
@@ -49,41 +45,6 @@ public class Button {
      */
     public void setMenu(MainMenu menu) {
         this.menu = menu;
-    }
-    /**
-     * Setter for PauseMenu
-     * @param pause - Pause menu object
-     */
-    public void setPauseMenu(PauseMenu pause) {
-        this.pause = pause;
-    }
-
-    /**
-     * trigger for buttons on the MainMenu
-     */
-    public void menuTriggerClick() {
-        menu.menuClickHandler(this.text);
-    }
-    /**
-     * trigger for buttons on PauseMenu
-     */
-    public void pauseTriggerClick() {
-        pause.menuClickHandler(this.text);
-    }
-
-    /**
-     * Method that returns if the coordinates of the click are inside the button
-     * @param aX - coordinate of the click on the horizontal plane
-     * @param aY - coordinate of the click on the vertical plane
-     * @return
-     */
-    public boolean coordinatesAreInside(int aX, int aY) {
-        if (this.x + this.width >= aX && this.x <= aX && this.y + this.height >= aY && this.y <= aY ) {
-            return true;
-        }
-        else {
-            return false;
-        }
     }
     /**
      * Method that is used to display the button
