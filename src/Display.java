@@ -10,7 +10,7 @@ import javafx.scene.image.Image;
  */
 public class Display {
 
-    private int pixelScale = 48;
+    public int pixelScale = 48;
 
     /**
      * Instance variable to call on the canvas of javafx to draw objects
@@ -50,8 +50,8 @@ public class Display {
     }
 
 
-    public void redTile(int x, int y) {
-        displayRectangle(x*pixelScale, y*pixelScale, pixelScale, pixelScale, Color.RED);
+    public void redTile(int x, int y, int offX, int offY) {
+        displayRectangle(x*pixelScale + offX, y*pixelScale + offY, pixelScale, pixelScale, Color.RED);
     }
 
     // Example
