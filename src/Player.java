@@ -1,6 +1,7 @@
-import java.util.logging.Handler;
+import javafx.scene.input.KeyCode;
+import javafx.scene.paint.Color;
 
-public class Player{
+public class Player extends GameObject{
 
     private int temperature;
     private int shovelLevel;
@@ -19,16 +20,46 @@ public class Player{
         this.playerHandler = handler;
     }
 
-    public void playerMove(int xOffset, int yOffset){
+    public void playerMove(Direction direction){
+        if (direction == Direction.Left) {
+            this.playerX -= 1;
+        } else if (direction == Direction.Right) {
+            this.playerX += 1;
+        } else if (direction == Direction.Down) {
+            this.playerY += 1;
+        } else if (direction == Direction.Up) {
+            this.playerY -= 1;
+        }
+        setRotation(direction);
+    }
+
+    public void setRotation(Direction direction) {
+        this.playerOrientation = direction;
+    }
+
+    public void playerThrow() {
 
     }
 
-    public void playerThrow(){
-
+    public void display(Display d) {
+        for (int x = playerX - 1; x <= playerX + 1; x++) {
+            for (int y = playerY - 1; y <= playerY + 1; y++) {
+                Main.board.drawTile(x,y);
+            }
+        }
+        d.redTile(playerX, playerY);
     }
 
-    public void tick(){
-
+    public void tick() {
+        if (Handler.kl.justPressed(KeyCode.W)) {
+            playerMove(Direction.Up);
+        } else if (Handler.kl.justPressed(KeyCode.A)) {
+            playerMove(Direction.Left);
+        } else if (Handler.kl.justPressed(KeyCode.S)) {
+            playerMove(Direction.Down);
+        } else if (Handler.kl.justPressed(KeyCode.D)) {
+            playerMove(Direction.Right);
+        }
     }
 
     public int getTemperature() {return temperature;}
