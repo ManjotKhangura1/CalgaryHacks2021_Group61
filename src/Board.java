@@ -30,7 +30,7 @@ public class Board {
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {
                 int random = 101;
-                if(Math.random() > 0.3)
+                if(Math.random() < 0.3)
                     random = (int)(Math.random()*(13) + 101);
                 if (j == 0) {
                     getTile(i,j).setValues(TileID.RoadTop, 0, null, random);
