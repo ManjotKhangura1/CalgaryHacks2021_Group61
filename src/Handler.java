@@ -36,20 +36,88 @@ public class Handler {
     }
 
     public void tick() {
+        if (kl.justPressed(KeyCode.P))
+        {
+            setGameStatePlay();
+        }
+        if (kl.justPressed(KeyCode.O))
+        {
+            setGameStateMainMenu();
+        }
+        if (kl.justPressed(KeyCode.I))
+        {
+            setGameStatePause();
+        }
         for (int i = 0; i < object.size(); i++) {
             GameObject tempObject = object.get(i);
             tempObject.tick(); // update all
         }
     }
 
-    public void render(Display d) {
-        display = d;
-        if (!hasRendered || kl.justPressed(KeyCode.SPACE)) {
-            d.drawGameFrame();
-            hasRendered = true;
-        }
-        player.display(d);
+    /**
+     * The instance of the menu
+     */
+    private MainMenu menu = null;
+
+    /**
+     * The instance of the pause menu
+     */
+    private PauseMenu pause = null;
+
+    /**
+     * The current game state
+     */
+    private GameState gState = GameState.MainMenu;
+
+    /**
+     * Sets the game state to play
+     */
+    public void setGameStatePlay() {
+        gState = GameState.Play;
     }
 
+    /**
+     * Sets the game state to main menu
+     */
+    public void setGameStateMainMenu() {
+        gState = GameState.MainMenu;
+    }
 
+    /**
+     * Sets the game state to pause
+     */
+    public void setGameStatePause() {
+        gState = GameState.Pause;
+    }
+
+    public void render(Display d) {
+        display = d;
+        if (gState == GameState.MainMenu) {
+            d.setupNextFrame();
+            if (menu == null) {
+                menu = new MainMenu(this, mainStage);
+            }
+            menu.update();
+            menu.render(d);
+            //implement soon
+        }
+        else if (gState == GameState.Pause) {
+            d.setupNextFrame();
+            if (pause == null) {
+                pause = new PauseMenu(this);
+            }
+            pause.update();
+            pause.render(d);
+        }
+        else if (gState == GameState.Play) {
+            //PauseMenu pauseMenu = new PauseMenu();
+            //pauseMenu.renderMainPause(null);
+            //more to implement
+            if (!hasRendered || kl.justPressed(KeyCode.SPACE)) {
+                d.drawGameFrame();
+                hasRendered = true;
+            }
+            player.display(d);
+        }
+    }
 }
