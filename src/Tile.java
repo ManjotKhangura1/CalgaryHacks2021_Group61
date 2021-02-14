@@ -3,6 +3,7 @@ public class Tile {
     private TileID tileID;
     private int snowLevel;
     private Object occupant;
+    private int variant;
 
     Tile(TileID id, int snowLevel, Object occupant){
         this.tileID = id;
@@ -10,10 +11,11 @@ public class Tile {
         this.occupant = occupant;
     }
 
-    public void setValues(TileID t, int snowLevel, GameObject occupant) {
+    public void setValues(TileID t, int snowLevel, GameObject occupant, int variant) {
         this.tileID = t;
         this.snowLevel = snowLevel;
         this.occupant = occupant;
+        this.variant = variant;
     }
     public boolean hasOccupant()
     {
@@ -47,4 +49,6 @@ public class Tile {
     public int getSnowLevel() {return snowLevel;}
 
     public Object getOccupant() {return occupant;}
+
+    public int getVariant() {return variant;}
 }
