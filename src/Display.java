@@ -66,6 +66,11 @@ public class Display {
         //gC.fillRect(x*pixelScale, y*pixelScale, pixelScale, pixelScale);
     }
 
+    public void playerTile(int x, int y, String sprite, int offX, int offY) {
+        Image image = new Image(sprite);
+        gC.drawImage(image, x*pixelScale + offX, y*pixelScale + offY);
+    }
+
 
     public void redTile(int x, int y, int offX, int offY) {
         displayRectangle(x*pixelScale + offX, y*pixelScale + offY, pixelScale, pixelScale, Color.RED);

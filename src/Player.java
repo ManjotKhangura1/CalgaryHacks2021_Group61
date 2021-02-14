@@ -67,7 +67,7 @@ public class Player extends GameObject{
         if (iStepY != 0 || iStepX != 0) {
             return;
         }
-        d.redTile(playerX,playerY,0,0);
+        d.playerTile(playerX,playerY,playerSprite, iStepX, iStepY);
     }
 
     public void tick() {
@@ -81,7 +81,7 @@ public class Player extends GameObject{
                 Main.board.drawTile(playerX-1,playerY);
             }
 
-            playerHandler.display.redTile(playerX, playerY, iStepX, iStepY);
+            playerHandler.display.playerTile(playerX, playerY, playerSprite, iStepX, iStepY);
             return;
         } else if (iStepY != 0) {
             if (iStepY > 0) {
@@ -91,7 +91,7 @@ public class Player extends GameObject{
                 iStepY += stepSize;
                 Main.board.drawTile(playerX,playerY-1);
             }
-            playerHandler.display.redTile(playerX, playerY, iStepX, iStepY);
+            playerHandler.display.playerTile(playerX, playerY, playerSprite, iStepX, iStepY);
             return;
         }
         if (Handler.kl.isPressed(KeyCode.W)) {
