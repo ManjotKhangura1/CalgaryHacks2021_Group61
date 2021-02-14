@@ -2,8 +2,8 @@ import java.util.ArrayList;
 
 public class Board {
     private ArrayList<Tile> tileBoard = new ArrayList<>();
-    private final int width = 28;
-    private final int height = 20;
+    public final int width = 28;
+    public final int height = 20;
 
     Display d;
 

@@ -37,11 +37,27 @@ public class Player extends GameObject{
         if (Main.board.getTile(playerX + xOffset, playerY + yOffset).getTileID() != TileID.Driveway) {
             return;
         }
+        push(playerX + xOffset, playerY + yOffset, xOffset, yOffset);
         setRotation(direction);
         playerY += yOffset;
         playerX += xOffset;
         iStepX = (-xOffset) * playerHandler.display.pixelScale;
         iStepY = (-yOffset) * playerHandler.display.pixelScale;
+    }
+
+    public void push(int x, int y, int xOff, int yOff) {
+        Tile t = Main.board.getTile(x + xOff,y + yOff);
+        if (t.getTileID() == TileID.Road || t.getTileID() == TileID.House) {
+            if (x < Main.board.width / 2) {
+                push(x, y, -1, 0);
+            } else {
+                push(x, y, 1, 0);
+            }
+            return;
+        }
+        int snow = Main.board.getTile(x,y).getSnowLevel();
+        Main.board.getTile(x,y).setSnowLevel(0);
+        t.setSnowLevel(snow + t.getSnowLevel());
     }
 
     public void setRotation(Direction direction) {
